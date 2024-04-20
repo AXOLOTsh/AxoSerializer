@@ -21,7 +21,7 @@ namespace AxoSerializer
         /// Get or set the path to the directory where the serialization file will be written.
         /// </summary>
         [JsonIgnore]
-        public string SerializationPath { get; set; } = AppDomain.CurrentDomain.BaseDirectory;
+        public virtual string SerializationPath { get; set; } = AppDomain.CurrentDomain.BaseDirectory;
 
         /// <summary>
         /// Serializes a object to a file.
@@ -33,10 +33,19 @@ namespace AxoSerializer
         }
 
         /// <summary>
-        /// Deserializes a object from a file.
+        /// Deserialize an object from a file.
         /// </summary>
         /// <returns>Deserialized object.</returns>
         public T Deserialize()
+        {
+            return (T)Serializer.Deserialize(Path.Combine(SerializationPath, $"{typeof(T).Name}.json"));
+        }
+
+        /// <summary>
+        /// Deserialize an object from a file; if there is no such file, returns a default.
+        /// </summary>
+        /// <returns>Deserialized object.</returns>
+        public T DeserializeOrDefault()
         {
             try
             {
