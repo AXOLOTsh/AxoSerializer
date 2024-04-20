@@ -21,14 +21,15 @@ namespace AxoSerializer
         /// <summary>
         /// Deserializes an object.
         /// </summary>
+        /// <typeparam name="T">Object type to deserialize.</typeparam>
         /// <param name="filePath">Path to the file to be deserialized.</param>
-        /// <returns></returns>
+        /// <returns>Deserialized object.</returns>
         /// <exception cref="FileNotFoundException">Exception thrown if file not found.</exception>
-        public static object Deserialize(string filePath)
+        public static T Deserialize<T>(string filePath)
         {
             if (File.Exists(filePath))
             {
-                return JsonSerializer.Deserialize<object>(File.ReadAllText(filePath));
+                return JsonSerializer.Deserialize<T>(File.ReadAllText(filePath));
             }
             else
             {

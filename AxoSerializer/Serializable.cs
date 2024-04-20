@@ -38,7 +38,7 @@ namespace AxoSerializer
         /// <returns>Deserialized object.</returns>
         public T Deserialize()
         {
-            return (T)Serializer.Deserialize(Path.Combine(SerializationPath, $"{typeof(T).Name}.json"));
+            return Serializer.Deserialize<T>(Path.Combine(SerializationPath, $"{typeof(T).Name}.json"));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace AxoSerializer
         {
             try
             {
-                return (T)Serializer.Deserialize(Path.Combine(SerializationPath, $"{typeof(T).Name}.json"));
+                return Serializer.Deserialize<T>(Path.Combine(SerializationPath, $"{typeof(T).Name}.json"));
             }
             catch
             {
