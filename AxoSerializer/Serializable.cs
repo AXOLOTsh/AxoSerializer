@@ -20,6 +20,7 @@ namespace AxoSerializer
         /// <summary>
         /// Get or set the path to the directory where the serialization file will be written.
         /// </summary>
+        [JsonIgnore]
         public string SerializationPath { get; set; } = AppDomain.CurrentDomain.BaseDirectory;
 
         /// <summary>
